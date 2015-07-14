@@ -7,8 +7,8 @@
 default: &default
   adapter: postgresql
   host: localhost
-	username: ariaru
-	password: b2-pkmc8_rx-
+  username: ariaru
+  password: b2-pkmc8_rx-
   pool: 5
   timeout: 5000
 
