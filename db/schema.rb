@@ -11,24 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713154314) do
+ActiveRecord::Schema.define(version: 20150713155004) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "documents", force: :cascade do |t|
-    t.integer  "initiator_id"
     t.string   "title"
     t.string   "writing_mode"
-    t.integer  "current_version_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.integer  "current_version"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
-  add_index "documents", ["current_version_id"], name: "index_documents_on_current_version_id"
-  add_index "documents", ["initiator_id"], name: "index_documents_on_initiator_id"
+  add_index "documents", ["current_version"], name: "index_documents_on_current_version", using: :btree
 
   create_table "versions", force: :cascade do |t|
-    t.integer  "author_id"
     t.boolean  "root"
-    t.integer  "parent_id"
+    t.integer  "parent"
     t.text     "summary"
     t.text     "body"
     t.text     "tags"
@@ -36,7 +36,8 @@ ActiveRecord::Schema.define(version: 20150713154314) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "versions", ["author_id"], name: "index_versions_on_author_id"
-  add_index "versions", ["parent_id"], name: "index_versions_on_parent_id"
+  add_index "versions", ["parent"], name: "index_versions_on_parent", using: :btree
 
+  add_foreign_key "documents", "versions", column: "current_version"
+  add_foreign_key "versions", "versions", column: "parent"
 end
