@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  initiator_id:
+  title: MyString
+  writing_mode: MyString
+  current_version_id: 
+
+two:
+  initiator_id:
+  title: MyString
+  writing_mode: MyString
+  current_version_id: 
