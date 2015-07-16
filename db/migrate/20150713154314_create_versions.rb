@@ -1,7 +1,7 @@
 class CreateVersions < ActiveRecord::Migration
   def change
     create_table :versions do |t|
-#      t.references :author, index: true
+      t.references :user, index: true
       t.boolean :root
       t.integer :parent, index: true, null: true
       t.text :summary
@@ -10,7 +10,7 @@ class CreateVersions < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-#    add_foreign_key :versions, :authors
+    add_foreign_key :versions, :users
     add_foreign_key :versions, :versions, column: :parent
   end
 end
