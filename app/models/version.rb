@@ -1,6 +1,6 @@
 class Version < ActiveRecord::Base
-  belongs_to :author
-  belongs_to :parent, class_name: "Version"
-  has_one :document
-  has_many :children, class_name: "Version", foreign_key: "parent_id"
+  belongs_to :document
+  belongs_to :user
+  belongs_to :parent, inverse_of: :children, class_name: "Version"
+  has_many :children, inverse_of: :parent, class_name: "Version", foreign_key: "parent_id"
 end
