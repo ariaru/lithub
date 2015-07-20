@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716133237) do
+ActiveRecord::Schema.define(version: 20150720113917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,12 +19,9 @@ ActiveRecord::Schema.define(version: 20150716133237) do
   create_table "documents", force: :cascade do |t|
     t.string   "title"
     t.string   "writing_mode"
-    t.integer  "current_version"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
-
-  add_index "documents", ["current_version"], name: "index_documents_on_current_version", using: :btree
 
   create_table "repositories", force: :cascade do |t|
     t.string   "title"
@@ -57,7 +54,6 @@ ActiveRecord::Schema.define(version: 20150716133237) do
 
   add_index "versions", ["parent"], name: "index_versions_on_parent", using: :btree
 
-  add_foreign_key "documents", "versions", column: "current_version"
   add_foreign_key "repositories", "users"
   add_foreign_key "versions", "versions", column: "parent"
 end
