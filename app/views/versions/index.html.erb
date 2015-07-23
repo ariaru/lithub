@@ -1,0 +1,31 @@
+<h2>Listing Versions</h2>
+
+<table>
+	<tr>
+		<th>ID</th>
+		<th>Summary</th>
+		<th>Body</th>
+		<th>Tags</th>
+		<th>Created</th>
+		<th>Updated</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+
+<% @versions.each do |version| %>
+	<tr>
+		<td><%= version.id %></td>
+		<td><%= version.summary %></td>
+		<td><%= version.tags %></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+<% end %>
+</table>
+
+<%= link_to "New version", new_version_path %>

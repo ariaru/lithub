@@ -15,6 +15,13 @@ class VersionsController < ApplicationController
     end
   end
 
+  def index
+    @versions = Version.all
+  end
+
+  def show
+  end
+
   private
     def version_params
       params.require(:version).permit(:summary, :body, :tags)
