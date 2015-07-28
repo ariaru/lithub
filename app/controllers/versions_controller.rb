@@ -24,6 +24,7 @@ class VersionsController < ApplicationController
 
   def edit
     @version = Version.find(params[:id])
+    @current_version = Version.find(params[:id])
   end
 
   def update
