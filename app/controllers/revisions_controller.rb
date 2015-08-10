@@ -40,6 +40,14 @@ class RevisionsController < ApplicationController
 
   private
     def revision_params
-      params.require(:revision).permit(:summary, :body, :tags, :parent_id)
+      params.require(:revision).permit(:summary, :body, :tags, :parent_id, :commit_message)
+    end
+
+    def save_as_draft?
+      params[:commit] == "Save as draft"
+    end
+
+    def save_new_revision?
+      params[:commit] == "Save new revision"
     end
 end

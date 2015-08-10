@@ -6,7 +6,7 @@
 	</div>
 
 	<div class="form-group">
-		<%= f.label :body %>
+		<%= f.label :body, "Main Text" %>
 		<%= f.text_area :body, class: 'form-control' %>
 	</div>
 
@@ -18,6 +18,21 @@
 			<%= f.hidden_field :parent_id, value: @current_revision.id %>
 	<% end %>
 
-	<%= f.submit 'Save', class: 'btn btn-default' %>
+	<%= f.submit 'Save as draft', class: 'btn btn-default' %>
+
+	<% if @current_revision %>
+		<div>
+			</br>
+			<p><strong>OR save a new significant revision of your text:</strong></p>
+		</div>
+		
+		<div class="form-group">
+			<%= f.label :commit_message, "Important changes since the last significant revision - ALL DRAFTS SINCE THE LAST SIGNIFICANT REVISION WILL BE DELETED!" %>
+			<%= f.text_field :commit_message, class: 'form-control' %>
+		</div>
+
+		<%= f.submit 'Save new revision', class: 'btn btn-primary' %>
+
+	<% end %>
 
 <% end %>
