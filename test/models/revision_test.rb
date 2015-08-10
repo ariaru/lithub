@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class VersionTest < ActiveSupport::TestCase
+class RevisionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

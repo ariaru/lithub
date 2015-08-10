@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :versions
+  resources :revisions
   get '/about' => 'pages#about'
   root 'pages#home'
   # The priority is based upon order of creation: first created -> highest priority.

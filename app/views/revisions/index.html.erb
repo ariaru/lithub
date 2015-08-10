@@ -1,4 +1,4 @@
-<h2>Listing Versions</h2>
+<h2>Listing Revisions</h2>
 
 <table>
 	<tr>
@@ -13,11 +13,11 @@
 		<th></th>
 	</tr>
 
-<% @versions.each do |version| %>
+<% @revisions.each do |revision| %>
 	<tr>
-		<td><%= version.id %></td>
-		<td><%= version.summary %></td>
-		<td><%= version.tags %></td>
+		<td><%= revision.id %></td>
+		<td><%= revision.summary %></td>
+		<td><%= revision.tags %></td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -28,4 +28,4 @@
 <% end %>
 </table>
 
-<%= link_to "New version", new_version_path %>
+<%= link_to "New revision", new_revision_path %>
