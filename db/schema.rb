@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150810150725) do
+ActiveRecord::Schema.define(version: 20150811093350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,9 +38,10 @@ ActiveRecord::Schema.define(version: 20150810150725) do
     t.text     "summary"
     t.text     "body"
     t.text     "tags"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "commit_message"
+    t.string   "status",         default: "draft"
   end
 
   add_index "revisions", ["parent_id"], name: "index_revisions_on_parent_id", using: :btree
