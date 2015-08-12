@@ -35,14 +35,13 @@ class RevisionsController < ApplicationController
     if @revision.save && (@revision.status == "publish")
       # add code here
       flash[:success] = 'Revision published!'
-      redirect_to edit_revision_path(@revision.id)
     elsif @revision.save
       flash[:success] = 'Revision saved.'
-      redirect_to edit_revision_path(@revision.id)
     else
       flash[:danger] = 'Error occurred, revision has not been saved.'
-      redirect_to edit_revision_path(@revision.id)
     end
+
+    redirect_to edit_revision_path(@revision.id)
   end
 
   private
