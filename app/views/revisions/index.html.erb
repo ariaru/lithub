@@ -3,27 +3,30 @@
 <table>
 	<tr>
 		<th>ID</th>
+		<th>Root?</th>
+		<th>Parent ID</th>
+		<th>Status</th>
 		<th>Summary</th>
-		<th>Body</th>
-		<th>Tags</th>
+		<!-- <th>Main Text</th>
+		<th>Tags</th> -->
+		<th>Commit Message</th>
 		<th>Created</th>
-		<th>Updated</th>
-		<th></th>
-		<th></th>
-		<th></th>
+		<!-- <th>Updated</th> -->
 	</tr>
 
 <% @revisions.each do |revision| %>
 	<tr>
 		<td><%= revision.id %></td>
+		<td><%= revision.root %></td>
+		<td><%= revision.parent_id %></td>
+		<td><%= revision.status %></td>
 		<td><%= revision.summary %></td>
-		<td><%= revision.tags %></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<!-- <td><%= revision.body %></td>
+		<td><%= revision.tags %></td> -->
+		<td><%= revision.commit_message %></td>
+		<td><%= revision.created_at.to_date.inspect %></td>
+		<!-- <td><%= revision.updated_at.to_date.inspect %></td> -->
+		<td><%= link_to "Edit", edit_revision_path(revision) %></td>
 	</tr>
 <% end %>
 </table>
