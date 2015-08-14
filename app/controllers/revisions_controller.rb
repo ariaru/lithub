@@ -31,18 +31,8 @@ class RevisionsController < ApplicationController
     @revision = Revision.new(revision_params)
     @revision.status = "draft" if save_as_draft?
     @revision.status = "publish" if save_new_revision?
-    # @parent = Revision.find(@revision.parent)
-    obsolete_drafts = []
-    if (@revision.parent && (@revision.status == "publish") && @revision.save)
-      while (@revision.parent && (@revision.parent.status == "draft"))
-        if @revision.parent.status == "draft"
-          obsolete_drafts.push(@revision.parent)
-          @revision.parent = @revision.parent.parent
-          # byebug
-        end
-      end
-      # byebug
-      obsolete_drafts.reverse.each { |draft| draft.delete }
+    
+    if @revision.status == "publish" && @revision.save
       flash[:success] = 'Revision published!'
     elsif @revision.save
       flash[:success] = 'Revision saved as draft.'
