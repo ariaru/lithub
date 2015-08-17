@@ -1,9 +1,17 @@
 <%= form_for(@document) do |f| %>
+  <%= f.nested_fields_for :branches do |ff| %>
+
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control'%>
   </div>
 
+  <div class="form-group">
+    <%= ff.label :branch, "Branch Name" %>
+    <%= ff.text_field :branch, value: "Trunk" %>
+  </div>
+
   <%= f.submit 'Create Document', class: 'btn btn-primary'%>
   
+  <% end %>
 <% end %>
