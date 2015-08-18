@@ -31,7 +31,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 
 # Use nested_form_fields to nest form fields :)
-gem 'nested_form_fields'
+# gem 'nested_form_fields'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
