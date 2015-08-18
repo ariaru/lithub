@@ -1,4 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_branch_path(@branch) %> |
-<%= link_to 'Back', branches_path %>
+<h1>Branch: <%= @branch.name %></h1>
+
+<%= link_to 'Edit', edit_document_branch_path(@branch.document_id, @branch.id) %> |
+<%= link_to 'Back', document_branches_path %>

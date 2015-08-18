@@ -1,4 +1,4 @@
-<%= form_for(@branch) do |f| %>
+<%= form_for [@document, @branch] do |f| %>
   <% if @branch.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@branch.errors.count, "error") %> prohibited this branch from being saved:</h2>

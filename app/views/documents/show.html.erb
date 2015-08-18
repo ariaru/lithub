@@ -1,4 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_document_path(@document) %> |
+<p>
+	<h1>Document Title: <%= @document.title %></h1>
+</p>
+
+<h3>Branches</h3>
+<% if @document.branches.any? %>
+	<ul>
+		<% @document.branches.each do |branch| %>
+			<li><%= link_to branch, document_branch_path(@document.id, branch.id) %></li>
+		<% end %>
+	</ul>
+<% else %>
+	<p>Currently, this Document does not have any branches.</p>
+<% end %>
+
+<%= link_to 'Edit', edit_document_path(@document) %>
 <%= link_to 'Back', documents_path %>

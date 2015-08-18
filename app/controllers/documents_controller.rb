@@ -15,10 +15,12 @@ class DocumentsController < ApplicationController
   # GET /documents/new
   def new
     @document = Document.new
+    @document.branches.build
   end
 
   # GET /documents/1/edit
   def edit
+    @document.branches.build
   end
 
   # POST /documents
@@ -65,10 +67,11 @@ class DocumentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_document
       @document = Document.find(params[:id])
+      print @document
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:title, :branch)
+      params.require(:document).permit(:title, branches_attributes: [:id, :name])
     end
 end

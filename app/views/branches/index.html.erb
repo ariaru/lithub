@@ -12,9 +12,9 @@
   <tbody>
     <% @branches.each do |branch| %>
       <tr>
-        <td><%= link_to 'Show', branch %></td>
-        <td><%= link_to 'Edit', edit_branch_path(branch) %></td>
-        <td><%= link_to 'Destroy', branch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', document_branch_path(branch.document_id, branch.id) %></td>
+        <td><%= link_to 'Edit', edit_document_branch_path(branch.document_id, branch.id) %></td>
+        <td><%= link_to 'Destroy', document_branch_path(branch.document_id, branch.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Branch', new_branch_path %>
+<%= link_to 'New Branch', new_document_branch_path %>

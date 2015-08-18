@@ -15,6 +15,7 @@ class BranchesController < ApplicationController
   # GET /branches/new
   def new
     @branch = Branch.new
+    @document = Document.find(params[:document_id])
   end
 
   # GET /branches/1/edit
@@ -65,10 +66,11 @@ class BranchesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_branch
       @branch = Branch.find(params[:id])
+      @document = Document.find(params[:document_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def branch_params
-      params[:branch]
+      params.require(:branch).permit(:name, :id, :document_id)
     end
 end
