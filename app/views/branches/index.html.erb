@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Branch</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,6 +13,7 @@
   <tbody>
     <% @branches.each do |branch| %>
       <tr>
+        <td><%= branch.name %></td>
         <td><%= link_to 'Show', document_branch_path(branch.document_id, branch.id) %></td>
         <td><%= link_to 'Edit', edit_document_branch_path(branch.document_id, branch.id) %></td>
         <td><%= link_to 'Destroy', document_branch_path(branch.document_id, branch.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
