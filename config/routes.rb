@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :documents do
-    resources :branches do
+  resources :branches do
+    resources :documents do
       resources :revisions
     end
   end
