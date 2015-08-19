@@ -1,8 +1,7 @@
 class Document < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :repository
-  has_many :branches, dependent: :destroy
-  accepts_nested_attributes_for :branches, reject_if: proc { |attr| attr[:name].blank? }, allow_destroy: true
+  belongs_to :branch
+  has_many :revisions, dependent: :destroy
+  has_one :current_revision, class_name: "Revision", foreign_key: "document_id"
   validates :title, presence: true
 
   def to_s

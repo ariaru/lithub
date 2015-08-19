@@ -1,6 +1,6 @@
 class Branch < ActiveRecord::Base
-  belongs_to :document
-  has_one :current_revision, class_name: "Revision", foreign_key: "branch_id"
+  has_many :documents, dependent: :destroy
+  accepts_nested_attributes_for :documents, reject_if: proc { |attr| attr[:title].blank? }, allow_destroy: true
   validates :name, presence: true
 
   def to_s
