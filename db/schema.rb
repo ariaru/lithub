@@ -11,25 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817124742) do
+ActiveRecord::Schema.define(version: 20150819151646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "branches", force: :cascade do |t|
     t.string   "name"
-    t.integer  "document_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "branches", ["document_id"], name: "index_branches_on_document_id", using: :btree
 
   create_table "documents", force: :cascade do |t|
     t.string   "title"
     t.string   "writing_mode"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "branch_id"
   end
 
   create_table "repositories", force: :cascade do |t|
@@ -51,10 +49,10 @@ ActiveRecord::Schema.define(version: 20150817124742) do
     t.datetime "updated_at",                       null: false
     t.string   "commit_message"
     t.string   "status",         default: "draft"
-    t.integer  "branch_id"
+    t.integer  "document_id"
   end
 
-  add_index "revisions", ["branch_id"], name: "index_revisions_on_branch_id", using: :btree
+  add_index "revisions", ["document_id"], name: "index_revisions_on_document_id", using: :btree
   add_index "revisions", ["parent_id"], name: "index_revisions_on_parent_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -79,8 +77,7 @@ ActiveRecord::Schema.define(version: 20150817124742) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "branches", "documents"
   add_foreign_key "repositories", "users"
-  add_foreign_key "revisions", "branches"
+  add_foreign_key "revisions", "branches", column: "document_id"
   add_foreign_key "revisions", "revisions", column: "parent_id"
 end
