@@ -4,7 +4,9 @@ class BranchesController < ApplicationController
   # GET /branches
   # GET /branches.json
   def index
-    @branches = Branch.all
+    @document = Document.find(params[:document_id])
+    @branches = Branch.where(document_id: @document)
+    #find(params[:document_id])
   end
 
   # GET /branches/1
