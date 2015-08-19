@@ -4,7 +4,9 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.all
+    @branch = Branch.find(params[:branch_id])
+    @documents = Document.where(branch_id: @branch)
+    # @documents = Document.all
   end
 
   # GET /documents/1
@@ -15,12 +17,13 @@ class DocumentsController < ApplicationController
   # GET /documents/new
   def new
     @document = Document.new
-    @document.branches.build
+    @branch = Branch.find(params[:branch_id])
+    # @document.branches.build
   end
 
   # GET /documents/1/edit
   def edit
-    @document.branches.build
+    # @document.branches.build
   end
 
   # POST /documents
@@ -67,11 +70,11 @@ class DocumentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_document
       @document = Document.find(params[:id])
-      print @document
+      @branch = Branch.find(params[:branch_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:title, branches_attributes: [:id, :name])
+      params.require(:document).permit(:title, :id, branches_attributes: [:id, :name])
     end
 end

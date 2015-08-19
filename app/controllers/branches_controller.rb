@@ -4,9 +4,9 @@ class BranchesController < ApplicationController
   # GET /branches
   # GET /branches.json
   def index
-    @document = Document.find(params[:document_id])
-    @branches = Branch.where(document_id: @document)
-    #find(params[:document_id])
+    @branches = Branch.all
+    # @document = Document.find(params[:document_id])
+    # @branches = Branch.where(document_id: @document)
   end
 
   # GET /branches/1
@@ -17,11 +17,13 @@ class BranchesController < ApplicationController
   # GET /branches/new
   def new
     @branch = Branch.new
-    @document = Document.find(params[:document_id])
+    @branch.documents.build
+    # @document = Document.find(params[:document_id])
   end
 
   # GET /branches/1/edit
   def edit
+    @branch.documents.build
   end
 
   # POST /branches
@@ -68,11 +70,11 @@ class BranchesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_branch
       @branch = Branch.find(params[:id])
-      @document = Document.find(params[:document_id])
+      # @document = Document.find(params[:document_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def branch_params
-      params.require(:branch).permit(:name, :id, :document_id)
+      params.require(:branch).permit(:name, :id, documents_attributes: [:id, :title])
     end
 end
