@@ -1,6 +1,8 @@
 class RevisionsController < ApplicationController
   def new
     @revision = Revision.new
+    @branch = Branch.find(params[:branch_id])
+    @document = Document.find(params[:document_id])
   end
 
   def create
@@ -44,6 +46,12 @@ class RevisionsController < ApplicationController
   end
 
   private
+    def set_revision
+      @revision = Revision.find(params[:id])
+      @branch = Branch.find(params[:branch_id])
+      @document = Document.find(params[:document_id])
+    end
+
     def revision_params
       params.require(:revision).permit(:summary, :body, :tags, :parent_id, :commit_message, :status)
     end
