@@ -1,8 +1,8 @@
 class RevisionsController < ApplicationController
   def new
     @revision = Revision.new
-    @branch = Branch.find(params[:branch_id])
     @document = Document.find(params[:document_id])
+    @branch = Branch.find(params[:branch_id])
   end
 
   def create
@@ -42,18 +42,18 @@ class RevisionsController < ApplicationController
       flash[:danger] = 'Error occurred, revision has not been saved.'
     end
 
-    redirect_to edit_revision_path(@revision.id)
+    redirect_to edit_branch_document_revision_path(@revision.id)
   end
 
   private
     def set_revision
       @revision = Revision.find(params[:id])
-      @branch = Branch.find(params[:branch_id])
       @document = Document.find(params[:document_id])
+      @branch = Branch.find(params[:branch_id])
     end
 
     def revision_params
-      params.require(:revision).permit(:summary, :body, :tags, :parent_id, :commit_message, :status)
+      params.require(:revision).permit(:root, :parent_id, :summary, :body, :tags, :commit_message, :status, :document_id)
     end
 
     def save_as_draft?
