@@ -18,6 +18,7 @@ class DocumentsController < ApplicationController
   def new
     @document = Document.new
     @branch = Branch.find(params[:branch_id])
+    @document.revisions.build
     # @document.branches.build
   end
 
