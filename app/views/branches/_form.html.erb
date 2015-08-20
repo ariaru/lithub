@@ -50,24 +50,3 @@
   <% end %>
   
 <% end %>
-
-<!--
-#################################
-<%= form_for [@document, @branch] do |f| %>
-  <% if @branch.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@branch.errors.count, "error") %> prohibited this branch from being saved:</h2>
-
-      <ul>
-      <% @branch.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
--->
