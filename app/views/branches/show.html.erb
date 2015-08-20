@@ -4,16 +4,24 @@
 	<h1>Branch: <%= @branch.name %></h1>
 </p>
 
-<h3>Documents</h3>
-<% if @branch.documents.any? %>
-	<ul>
-		<% @branch.documents.each do |document| %>
-			<li><%= link_to document, branch_document_path(@branch.id, document.id) %></li>
-		<% end %>
-	</ul>
-<% else %>
-	<p>Currently, there are no documents on this branch.</p>
-<% end %>
+<p>
+	<h3>Documents</h3>
+	<% if @branch.documents.any? %>
+		<ul>
+			<% @branch.documents.each do |document| %>
+				<li><%= link_to document, branch_document_path(@branch.id, document.id) %></li>
+			<% end %>
+		</ul>
+	<% else %>
+		<p>Currently, there are no documents on this branch.</p>
+	<% end %>
+</p>
 
-<%= link_to 'Edit', edit_branch_path(@branch) %>
-<%= link_to 'Back', branches_path %>
+<p>
+	<%= link_to 'Add a document to this branch', new_branch_document_path(@branch.id) %>
+</p>
+
+<p>
+	<%= link_to 'Edit', edit_branch_path(@branch) %> |
+	<%= link_to 'Back', branches_path %>
+</p>
