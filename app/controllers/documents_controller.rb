@@ -75,6 +75,6 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:title, :id)
+      params.require(:document).permit(:title, :id, revisions_attributes: [:root, :parent_id, :summary, :body, :tags, :commit_message, :status, :document_id])
     end
 end

@@ -18,7 +18,7 @@ class BranchesController < ApplicationController
   def new
     @branch = Branch.new
     @branch.documents.build
-    # @document = Document.find(params[:document_id])
+    @branch.documents.each { |d| d.revisions.build }
   end
 
   # GET /branches/1/edit
@@ -75,6 +75,6 @@ class BranchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def branch_params
-      params.require(:branch).permit(:name, :id, documents_attributes: [:id, :title])
+      params.require(:branch).permit(:name, :id, documents_attributes: [:id, :title], revisions_attributes: [:root, :parent_id, :summary, :body, :tags, :commit_message, :status, :document_id])
     end
 end
