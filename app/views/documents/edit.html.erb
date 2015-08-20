@@ -2,5 +2,10 @@
 
 <%= render 'form' %>
 
+<%= link_to 'Show', branch_document_path(@document.branch_id, @document.id) %>
+<%= link_to 'Back', branch_documents_path(@document.branch_id) %>
+
+<!--
 <%= link_to 'Show', @document %> |
 <%= link_to 'Back', documents_path %>
+-->
