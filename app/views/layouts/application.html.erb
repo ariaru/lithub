@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>LitHub</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -38,7 +38,7 @@
       </div>
 
       <ul class="nav navbar-nav">
-        <li><%= link_to 'Write', new_document_path %></li>
+        <li><%= link_to 'Write', new_branch_path %></li>
         <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
         <li><a href="#">Link</a></li>
         <li class="dropdown">
