@@ -16,15 +16,14 @@ class DocumentsController < ApplicationController
 
   # GET /documents/new
   def new
-    @document = Document.new
     @branch = Branch.find(params[:branch_id])
+    @document = Document.new
     @document.revisions.build
-    # @document.branches.build
   end
 
   # GET /documents/1/edit
   def edit
-    # @document.branches.build
+    @document.revisions.build
   end
 
   # POST /documents

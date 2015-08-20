@@ -24,6 +24,7 @@ class BranchesController < ApplicationController
   # GET /branches/1/edit
   def edit
     @branch.documents.build
+    @branch.documents.each { |d| d.revisions.build }
   end
 
   # POST /branches
