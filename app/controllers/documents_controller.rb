@@ -12,6 +12,8 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
+    @branch = Branch.find(params[:branch_id])
+    @document = Document.find(params[:id])
   end
 
   # GET /documents/new
@@ -23,17 +25,19 @@ class DocumentsController < ApplicationController
 
   # GET /documents/1/edit
   def edit
-    @document.revisions.build
+    @document.revisions
   end
 
   # POST /documents
   # POST /documents.json
   def create
     @document = Document.new(document_params)
+    @branch = Branch.find(params[:branch_id])
+    @document.branch = @branch
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to branch_document_url(@document.branch, @document), notice: 'Document was successfully created.' }
+        format.html { redirect_to branch_document_url(@branch, @document), notice: 'Document was successfully created.' }
         format.json { render :show, status: :created, location: @document }
       else
         format.html { render :new }
