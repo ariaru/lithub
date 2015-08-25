@@ -18,7 +18,9 @@ class RevisionsController < ApplicationController
   end
 
   def index
-    @revisions = Revision.all
+    @branch = Branch.find(params[:branch_id])
+    @document = Document.find(params[:document_id])
+    @revisions = Revision.where(document_id: @document)
   end
 
   def show

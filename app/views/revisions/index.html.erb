@@ -1,4 +1,4 @@
-<h2>Listing Revisions</h2>
+<h2>Revisions for Document <%= @document.title %> on Branch <%= @branch.name %></h2>
 
 <table>
 	<tr>
@@ -26,9 +26,9 @@
 		<td><%= revision.commit_message %></td>
 		<td><%= revision.created_at.to_date.inspect %></td>
 		<!-- <td><%= revision.updated_at.to_date.inspect %></td> -->
-		<td><%= link_to "Edit", edit_revision_path(revision) %></td>
+		<td><%= link_to "Edit", edit_branch_document_revision_path(revision.document.branch_id, revision.document_id, revision.id) %></td>
 	</tr>
 <% end %>
 </table>
 
-<%= link_to "New revision", new_revision_path %>
+<%= link_to "New revision", new_branch_document_revision_path %>
