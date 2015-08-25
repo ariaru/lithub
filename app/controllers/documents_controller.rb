@@ -14,6 +14,7 @@ class DocumentsController < ApplicationController
   def show
     @branch = Branch.find(params[:branch_id])
     @document = Document.find(params[:id])
+    @current_revision = Revision.where(document_id: @document).last
   end
 
   # GET /documents/new

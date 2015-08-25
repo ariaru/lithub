@@ -2,5 +2,35 @@
 
 <h1>Document: <%= @document.title %></h1>
 
+<p>
+	<strong>Summary:</strong>
+  <%= @current_revision.summary %>
+</p>
+
+<p>
+	<strong>Main Text:</strong>
+  <%= @current_revision.body %>
+</p>
+
+<p>
+	<strong>Tags:</strong>
+  <%= @current_revision.tags %>
+</p>
+
+<p>
+	<strong>Created:</strong>
+  <%= @current_revision.created_at.to_date.inspect %>
+</p>
+
+<p>
+	<strong>Commit Message:</strong>
+  <%= @current_revision.commit_message %>
+</p>
+
+<p>
+	<strong>Status:</strong>
+  <%= @current_revision.status %>
+</p>
+
 <%= link_to 'Edit', edit_branch_document_path(@document.branch_id, @document.id) %> |
 <%= link_to 'Back', branch_documents_path %>
