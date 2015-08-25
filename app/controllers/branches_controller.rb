@@ -5,8 +5,6 @@ class BranchesController < ApplicationController
   # GET /branches.json
   def index
     @branches = Branch.all
-    # @document = Document.find(params[:document_id])
-    # @branches = Branch.where(document_id: @document)
   end
 
   # GET /branches/1
@@ -23,8 +21,7 @@ class BranchesController < ApplicationController
 
   # GET /branches/1/edit
   def edit
-    @branch.documents.build
-    @branch.documents.each { |d| d.revisions.build }
+    @branch.documents
   end
 
   # POST /branches

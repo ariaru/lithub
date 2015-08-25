@@ -1,6 +1,22 @@
 <h1>Editing Branch</h1>
 
-<%= render 'form' %>
+<table>
+  <thead>
+    <tr>
+      <th><h3>Documents on this Branch</h3></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+		<% @branch.documents.each do |document| %>
+			<%= render 'documents/docs_list', document: document %>
+		<% end %>
+	</tbody>
+</table>
+
+<br>
 
 <%= link_to 'Show', @branch %>
 <%= link_to 'Back', branches_path %>
