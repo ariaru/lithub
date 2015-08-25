@@ -26,7 +26,7 @@
 		<td><%= revision.commit_message %></td>
 		<td><%= revision.created_at.to_date.inspect %></td>
 		<!-- <td><%= revision.updated_at.to_date.inspect %></td> -->
-		<td><%= link_to "Edit", edit_branch_document_revision_path(revision.document.branch_id, revision.document_id, revision.id) %></td>
+		<td><%= link_to 'Show', branch_document_revision_path(revision.document.branch_id, revision.document_id, revision.id) %></td>
 	</tr>
 <% end %>
 </table>

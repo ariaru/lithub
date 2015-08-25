@@ -33,4 +33,5 @@
 </p>
 
 <%= link_to 'Edit', edit_branch_document_path(@document.branch_id, @document.id) %> |
+<%= link_to 'Show Previous Revisions', branch_document_revisions_path(@document.branch_id, @document.id, @document.revisions) %> |
 <%= link_to 'Back', branch_documents_path %>
