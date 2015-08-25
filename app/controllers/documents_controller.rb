@@ -20,12 +20,12 @@ class DocumentsController < ApplicationController
   def new
     @branch = Branch.find(params[:branch_id])
     @document = Document.new
-    @document.revisions.build
+    @current_revision = @document.revisions.build
   end
 
   # GET /documents/1/edit
   def edit
-    @document.revisions
+    @current_revision = @document.revisions[-1]
   end
 
   # POST /documents
