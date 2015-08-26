@@ -6,7 +6,6 @@ class DocumentsController < ApplicationController
   def index
     @branch = Branch.find(params[:branch_id])
     @documents = Document.where(branch_id: @branch)
-    # @documents = Document.all
   end
 
   # GET /documents/1
