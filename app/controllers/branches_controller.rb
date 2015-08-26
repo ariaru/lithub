@@ -66,17 +66,17 @@ class BranchesController < ApplicationController
   end
 
   def branch_off
-    @old_branch = Branch.find(params[:branch_id])
+    @old_branch = Branch.find(params[:id])
     @branch = Branch.new
     @branch.name = "Off-#{@old_branch.name}"
     @branch.save
 
     @old_documents = @old_branch.documents
-    @documents = []
+    @branch.documents = []
     @old_documents.each do |doc|
       doc.clone
       doc.branch_id = @branch.id
-      @documents.push(doc)
+      @branch.documents.push(doc)
     end
     
     @revisions = []

@@ -21,4 +21,4 @@
 <%= link_to 'Show', @branch %> |
 <%= link_to 'Back', branches_path %>
 <br>
-<%= link_to 'Branch Off', branch_off_url(branch_id: @branch) %>
+<%= link_to 'Branch Off', branch_off_url(@branch.id) %>
