@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :revisions
     end
   end
+  get '/branches/:branch_id/branch_off' => 'branches#branch_off', as: :branch_off
   get '/about' => 'pages#about'
   root 'pages#home'
   # The priority is based upon order of creation: first created -> highest priority.

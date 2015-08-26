@@ -1,4 +1,4 @@
-<h1>Editing Branch</h1>
+<h1>Editing Branch "<%= @branch.name %>"</h1>
 
 <table>
   <thead>
@@ -18,5 +18,7 @@
 
 <br>
 
-<%= link_to 'Show', @branch %>
+<%= link_to 'Show', @branch %> |
 <%= link_to 'Back', branches_path %>
+<br>
+<%= link_to 'Branch Off', branch_off_url(branch_id: @branch) %>

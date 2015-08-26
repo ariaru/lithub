@@ -21,7 +21,8 @@ class BranchesController < ApplicationController
 
   # GET /branches/1/edit
   def edit
-    @branch.documents
+    @branch = Branch.find(params[:id])
+    @documents = @branch.documents
   end
 
   # POST /branches
@@ -62,6 +63,31 @@ class BranchesController < ApplicationController
       format.html { redirect_to branches_url, notice: 'Branch was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def branch_off
+    @old_branch = Branch.find(params[:branch_id])
+    @branch = Branch.new
+    @branch.name = "Off-#{@old_branch.name}"
+    @branch.save
+
+    @old_documents = @old_branch.documents
+    @documents = []
+    @old_documents.each do |doc|
+      doc.clone
+      doc.branch_id = @branch.id
+      @documents.push(doc)
+    end
+    
+    @revisions = []
+    @old_documents.each do |doc|
+      cloned_rev = doc.revisions.last.clone
+      cloned_rev.parent_id = doc.revisions.last.id
+      cloned_rev.document_id = doc.id
+      @revisions.push(cloned_rev)
+    end
+
+    redirect_to edit_branch_path(@branch)
   end
 
   private
