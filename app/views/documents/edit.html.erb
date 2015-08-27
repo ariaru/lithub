@@ -1,6 +1,14 @@
-<h1>Editing Document</h1>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<h1>Editing Document</h1>
+		<div class="well">
 
-<%= render 'form' %>
+			<%= render 'form' %>
 
-<%= link_to 'Show', branch_document_path(@document.branch_id, @document.id) %>
-<%= link_to 'Back', branch_documents_path(@document.branch_id) %>
+		</div>
+
+			<%= link_to 'Show', branch_document_path(@document.branch_id, @document.id) %> |
+			<%= link_to 'Back', branch_documents_path(@document.branch_id) %>
+		
+	</div>
+</div>
