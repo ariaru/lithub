@@ -12,10 +12,10 @@ class Revision < ActiveRecord::Base
   protected
     def reassign_parent_and_delete_obsolete_drafts_if_necessary
       obsolete_drafts = []
-      if self[:status] == "publish"
+      if self.status == "publish"
         while self.parent.status == "draft"
           obsolete_drafts.push(self.parent)
-          self[:parent_id] = self.parent.parent_id
+          self.parent_id = self.parent.parent_id
         end
       end
       obsolete_drafts.each { |draft| draft.delete }

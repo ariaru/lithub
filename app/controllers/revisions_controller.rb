@@ -36,7 +36,7 @@ class RevisionsController < ApplicationController
   def update
     @revision = Revision.new(revision_params)
     @revision.status = "draft" if save_as_draft?
-    @revision.status = "publish" if save_new_revision?
+    @revision.status = "publish" if save_as_publish?
     @revision.document_id = params[:document_id] # Why does revision_params not
     # cover this line?
     
@@ -68,7 +68,7 @@ class RevisionsController < ApplicationController
       params[:commit] == "Save as draft"
     end
 
-    def save_new_revision?
-      params[:commit] == "Save new revision"
+    def save_as_publish?
+      params[:commit] == "Publish"
     end
 end
