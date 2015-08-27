@@ -27,6 +27,8 @@ class RevisionsController < ApplicationController
   end
 
   def edit
+    @branch = Branch.find(params[:branch_id])
+    @document = Document.find(params[:document_id])
     @revision = Revision.find(params[:id])
     @current_revision = Revision.find(params[:id])
   end
@@ -35,6 +37,8 @@ class RevisionsController < ApplicationController
     @revision = Revision.new(revision_params)
     @revision.status = "draft" if save_as_draft?
     @revision.status = "publish" if save_new_revision?
+    @revision.document_id = params[:document_id] # Why does revision_params not
+    # cover this line?
     
     if @revision.status == "publish" && @revision.save
       flash[:success] = 'Revision published!'
@@ -42,9 +46,11 @@ class RevisionsController < ApplicationController
       flash[:success] = 'Revision saved as draft.'
     else
       flash[:danger] = 'Error occurred, revision has not been saved.'
+      @revision = Revision.find(params[:id])
+      @revision.update(revision_params)
     end
 
-    redirect_to edit_branch_document_revision_path(@revision.id)
+    redirect_to edit_branch_document_revision_path(params[:branch_id], params[:document_id], @revision.id)
   end
 
   private

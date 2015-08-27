@@ -13,6 +13,7 @@ class DocumentsController < ApplicationController
   def show
     @branch = Branch.find(params[:branch_id])
     @document = Document.find(params[:id])
+    @revisions = Revision.where(document_id: @document)
     @current_revision = Revision.where(document_id: @document).last
   end
 
@@ -25,6 +26,8 @@ class DocumentsController < ApplicationController
 
   # GET /documents/1/edit
   def edit
+    @document = Document.find(params[:id])
+    @revisions = @document.revisions
     @current_revision = @document.revisions[-1]
   end
 
@@ -34,7 +37,8 @@ class DocumentsController < ApplicationController
     @document = Document.new(document_params)
     @branch = Branch.find(params[:branch_id])
     @document.branch = @branch
-
+    @revisions = @document.revisions
+    
     respond_to do |format|
       if @document.save
         format.html { redirect_to branch_document_url(@branch, @document), notice: 'Document was successfully created.' }

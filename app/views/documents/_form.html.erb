@@ -4,6 +4,10 @@
       <%= f.label :title %>
       <%= f.text_field :title, class: 'form-control' %>
   </div>
+  <%= f.submit 'Save Title', class: 'btn btn-default' %>
+<% end %>
+
+<%= form_for [@branch, @document, @current_revision] do |f| %>
 
     <div class="form-group">
       <%= f.label :summary %>

@@ -1,5 +1,5 @@
 
-<%= form_for @revision do |f| %>
+<%= form_for [@branch, @document, @revision] do |f| %>
 	<div class="form-group">
 		<%= f.label :summary %>
 		<%= f.text_area :summary, class: 'form-control' %>
