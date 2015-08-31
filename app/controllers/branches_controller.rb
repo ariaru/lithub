@@ -66,27 +66,27 @@ class BranchesController < ApplicationController
   end
 
   def branch_off
-    @old_branch = Branch.find(params[:id])
+    @old_branch = Branch.find(params[:branch_id])
     @branch = Branch.new
     @branch.name = "Off-#{@old_branch.name}"
     @branch.save
 
-    @old_documents = @old_branch.documents
-    @branch.documents = []
+    # @branch.documents = []
+
+    @old_documents = Document.where(branch_id: @old_branch)
+
     @old_documents.each do |doc|
-      doc.clone
-      doc.branch_id = @branch.id
-      @branch.documents.push(doc)
+      new_doc = Document.new
+      new_doc.title = doc.title
+      new_doc.branch_id = @branch.id
+      new_doc.save
+
+      new_first_rev = doc.revisions.last.clone
+      new_first_rev.parent_id = doc.revisions.last.id
+      new_first_rev.document_id = new_doc.id
+      new_first_rev.save
     end
     
-    @revisions = []
-    @old_documents.each do |doc|
-      cloned_rev = doc.revisions.last.clone
-      cloned_rev.parent_id = doc.revisions.last.id
-      cloned_rev.document_id = doc.id
-      @revisions.push(cloned_rev)
-    end
-
     redirect_to edit_branch_path(@branch)
   end
 
