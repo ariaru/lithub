@@ -81,7 +81,7 @@ class BranchesController < ApplicationController
       new_doc.branch_id = @branch.id
       new_doc.save
 
-      new_first_rev = doc.revisions.last.clone
+      new_first_rev = doc.revisions.last.dup
       new_first_rev.parent_id = doc.revisions.last.id
       new_first_rev.document_id = new_doc.id
       new_first_rev.save
