@@ -99,6 +99,6 @@ class BranchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def branch_params
-      params.require(:branch).permit(:name, :id, documents_attributes: [:id, :title, revisions_attributes: [:root, :parent_id, :summary, :body, :tags, :commit_message, :status, :document_id]])
+      params.require(:branch).permit(:name, :id, :parent_id, documents_attributes: [:id, :title, revisions_attributes: [:root, :parent_id, :summary, :body, :tags, :commit_message, :status, :document_id]])
     end
 end
