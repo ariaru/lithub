@@ -2,7 +2,32 @@
 	<div class="col-md-8 col-md-offset-2">
 		<h1>New Document on Branch <%= @branch.name %></h1>
 		<div class="well">
-			<%= render 'form' %>
+			<%= form_for [@branch, @document] do |f| %>
+
+			  <div class="form-group">
+			      <%= f.label :title %>
+			      <%= f.text_field :title, class: 'form-control' %>
+			  </div>
+			  
+			  <%= f.fields_for :revisions do |ff| %>
+			  	<div class="form-group">
+			      <%= ff.label :summary %>
+			      <%= ff.text_area :summary, value: @current_revision.summary, class: 'form-control' %>
+			    </div>
+
+			    <div class="form-group">
+			      <%= ff.label :body, "Main Text" %>
+			      <%= ff.text_area :body, value: @current_revision.body, class: 'form-control' %>
+			    </div>
+
+			    <div class="form-group">
+			      <%= ff.label :tags %>
+			      <%= ff.text_field :tags, value: @current_revision.tags, class: 'form-control' %>
+			    </div>
+			  <% end %>
+
+			  <%= f.submit 'Save Document', class: 'btn btn-default' %>
+			<% end %>
 		</div>
 		<%= link_to 'Back', branch_documents_path %>
 	</div>
