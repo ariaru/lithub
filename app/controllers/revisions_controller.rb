@@ -24,6 +24,9 @@ class RevisionsController < ApplicationController
   end
 
   def show
+    @branch = Branch.find(params[:branch_id])
+    @document = Document.find(params[:document_id])
+    @current_revision = Revision.find(params[:id])
   end
 
   def edit
