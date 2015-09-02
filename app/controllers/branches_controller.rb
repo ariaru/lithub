@@ -22,6 +22,7 @@ class BranchesController < ApplicationController
   # GET /branches/1/edit
   def edit
     @branch = Branch.find(params[:id])
+    @old_branch = Branch.find(params[:id])
     @documents = @branch.documents
   end
 
@@ -69,9 +70,8 @@ class BranchesController < ApplicationController
     @old_branch = Branch.find(params[:branch_id])
     @branch = Branch.new
     @branch.name = "Off-#{@old_branch.name}"
+    @branch.parent_id = @old_branch.id
     @branch.save
-
-    # @branch.documents = []
 
     @old_documents = Document.where(branch_id: @old_branch)
 
@@ -94,7 +94,6 @@ class BranchesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_branch
       @branch = Branch.find(params[:id])
-      # @document = Document.find(params[:document_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
