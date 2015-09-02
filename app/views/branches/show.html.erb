@@ -5,7 +5,7 @@
 </p>
 
 <p>
-	<h3>Documents</h3>
+	<h3>Documents:</h3>
 	<% if @branch.documents.any? %>
 		<ul>
 			<% @branch.documents.each do |document| %>
@@ -19,6 +19,19 @@
 
 <p>
 	<%= link_to 'Add a document to this branch', new_branch_document_path(@branch.id) %>
+</p>
+
+<p>
+	<h3>Branched-off:</h3>
+	<% if @branch.children.any? %>
+	<ul>
+		<% @branch.children.each do |child| %>
+			<li><%= link_to child, branch_path(child.id) %></li>
+		<% end %>	
+	</ul>
+	<% else %>
+		<p>Currently, there are no branches off this branch.</p>
+	<% end %>
 </p>
 
 <p>
