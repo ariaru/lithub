@@ -34,7 +34,7 @@
 		<h4>Branched-off:</h4>
 		<ul>
 			<% @branch.children.each do |child| %>
-				<li><%= link_to child, branch_path(child.id) %></li>
+				<li><%= link_to child, branch_path(child.id) %>  --> <%= link_to 'Show differences' %></li>
 			<% end %>	
 		</ul>
 	<% end %>
