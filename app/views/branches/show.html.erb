@@ -21,16 +21,26 @@
 	<%= link_to 'Add a document to this branch', new_branch_document_path(@branch.id) %>
 </p>
 
+<br>
+
+<p>
+	<% if @branch.parent %>
+		<h4>Parent Branch: <%= link_to @branch.parent, branch_path(@branch.parent.id) %></h4>	
+	<% end %>	
+</p>
+
 <p>
 	<% if @branch.children.any? %>
-	<h3>Branched-off:</h3>
-	<ul>
-		<% @branch.children.each do |child| %>
-			<li><%= link_to child, branch_path(child.id) %></li>
-		<% end %>	
-	</ul>
+		<h4>Branched-off:</h4>
+		<ul>
+			<% @branch.children.each do |child| %>
+				<li><%= link_to child, branch_path(child.id) %></li>
+			<% end %>	
+		</ul>
 	<% end %>
 </p>
+
+<br>
 
 <p>
 	<%= link_to 'Edit', edit_branch_path(@branch) %> |
