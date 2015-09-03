@@ -22,15 +22,13 @@
 </p>
 
 <p>
-	<h3>Branched-off:</h3>
 	<% if @branch.children.any? %>
+	<h3>Branched-off:</h3>
 	<ul>
 		<% @branch.children.each do |child| %>
 			<li><%= link_to child, branch_path(child.id) %></li>
 		<% end %>	
 	</ul>
-	<% else %>
-		<p>Currently, there are no branches off this branch.</p>
 	<% end %>
 </p>
 
