@@ -30,6 +30,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use devise for user authentication
 gem 'devise'
 
+# Use diffy to get diffs :)
+gem 'diffy'
+
 # Use nested_form_fields to nest form fields :)
 # gem 'nested_form_fields'
 
